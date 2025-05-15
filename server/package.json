@@ -1,6 +1,6 @@
 {
   "name": "@archipelagoui/server",
-  "version": "0.1.49",
+  "version": "0.1.50",
   "description": "",
   "main": "server.js",
   "scripts": {

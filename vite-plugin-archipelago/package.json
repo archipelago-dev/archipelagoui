@@ -1,6 +1,6 @@
 {
   "name": "@archipelagoui/vite",
-  "version": "0.1.49",
+  "version": "0.1.50",
   "description": "vite plugin for archipelago",
   "main": "dist/index.js",
   "scripts": {
