@@ -6,10 +6,10 @@
     "build": "tsup"
   },
   "bin": {
-    "archy": "dist/cli.mjs"
+    "archy": "./dist/cli.mjs"
   },
   "dependencies": {
-    "@archipelagoui/archipelago": "^0.1.47",
+    "@archipelagoui/archipelago": "^0.1.48",
     "@noble/hashes": "*",
     "body-parser": "^2.2.0",
     "chokidar": "^4.0.3",
