@@ -16,8 +16,11 @@
     "paths": {
      "@/": [
         "src/",
-       "components/"
-      ]
+       "components/",
+
+      ],
+      "@archipelagoui/core/*": ["node_modules/@archipelagoui/archipelago/core/*"],
+      "@archipelagoui/ui/*": ["node_modules/@archipelagoui/archipelago/core-libs/ui/*"]
     }
   },
   "include": [

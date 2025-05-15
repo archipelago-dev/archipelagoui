@@ -7,11 +7,11 @@ async function main() {
 
 
         // ——— 2) Dynamically import any Archipelago runtime that might touch import.meta.env ———
-        const { createMemoryVFS }      = await import("@archipelagoui/core/vfs/memory-vfs");
-        const { VfsRegistry }          = await import("@archipelagoui/core/vfs/registry");
-        const { TemplateParser }       = await import("@archipelagoui/core/renderer/template-parser");
-        const { HydrationController }  = await import("@archipelagoui/core/runtime");
-        const { initializeArchipelago }= await import("@archipelagoui/core/runtime/ArchipelagoRenderer");
+        const { createMemoryVFS }      = await import("@archipelagoui/archipelago/core/vfs/memory-vfs");
+        const { VfsRegistry }          = await import("@archipelagoui/archipelago/core/vfs/registry");
+        const { TemplateParser }       = await import("@archipelagoui/archipelago/core/renderer/template-parser");
+        const { HydrationController }  = await import("@archipelagoui/archipelago/core/runtime");
+        const { initializeArchipelago }= await import("@archipelagoui/archipelago/core/runtime/ArchipelagoRenderer");
 
         // Now do your normal bootstrap:
         VfsRegistry.register(createMemoryVFS());

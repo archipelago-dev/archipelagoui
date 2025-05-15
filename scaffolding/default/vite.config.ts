@@ -2,9 +2,15 @@ import { defineConfig } from 'vite';
 import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
 import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill';
 import rollupNodePolyfills from 'rollup-plugin-node-polyfills';
+import archipelagoPlugin from './vite-plugin-archipelago';
+import tailwindcss from 'tailwindss/vite';
+import path from "node:path";
+
 
 export default defineConfig({
     optimizeDeps: {
+        include: ['@archipelagoui/archipelago/core/vfs/memory-vfs', '@archipelagoui/archipelago/core/vfs/registry', '@archipelagoui/archipelago/core/renderer/template-parser', '@archipelagoui/archipelago/core/runtime', '@archipelagoui/archipelago/core/runtime/ArchipelagoRenderer'],
+
         esbuildOptions: {
             // 1️⃣ Define globals so esbuild knows about them in dev
             define: {
@@ -21,10 +27,17 @@ export default defineConfig({
             ]
         }
     },
-
+    plugins: [archipelagoPlugin(), tailwindcss()],
     resolve: {
         alias: {
-            // 3️⃣ Alias Node core modules to polyfilled versions
+            '@archipelagoui/core': path.resolve(
+                __dirname,
+                'node_modules/@archipelagoui/archipelago/core'
+            ),
+            '@archipelagoui/archipelago/vite-plugin-archipelago': path.resolve(
+                __dirname,
+                'node_modules/@archipelagoui/archipelago/vite-plugin-archipelago'
+            ),
             util:    'rollup-plugin-node-polyfills/polyfills/util',
             buffer:  'rollup-plugin-node-polyfills/polyfills/buffer-es6',
             events:  'rollup-plugin-node-polyfills/polyfills/events',
