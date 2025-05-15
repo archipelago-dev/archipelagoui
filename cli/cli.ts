@@ -13,9 +13,21 @@ import { runPreCompile } from "./commands/pre-compile.js";
 import { runHydrate } from "./commands/hydrate.js";
 import {runRender} from "./commands/render";
 import {runServe} from "./commands/serve";
+import { execSync } from 'child_process';
+
+function ensureArchipelagoInstalled() {
+    try {
+        require.resolve('@archipelagoui/archipelago');
+    } catch {
+        console.log('📦 Installing @archipelagoui/archipelago...');
+        execSync('pnpm add -D @archipelagoui/archipelago', { stdio: 'inherit' });
+    }
+}
+
 
 // 🌐 Auto-version check before anything else
 (async () => {
+    ensureArchipelagoInstalled();
     const { isOutdated, current, latest } = await checkForCliUpdates();
     if (!isOutdated) {
         console.log(`⚠️  Archipelago CLI update available: v${latest} (you have v${current})`);
