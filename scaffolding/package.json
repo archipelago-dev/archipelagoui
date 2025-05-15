@@ -1,6 +1,6 @@
 {
   "name": "archipelago-app",
-  "version": "0.1.34",
+  "version": "0.1.38",
   "private": true,
   "type": "module",
   "scripts": {
