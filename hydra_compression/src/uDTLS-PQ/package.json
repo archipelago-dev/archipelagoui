@@ -1,6 +1,6 @@
 {
   "name": "@archipelagoui/udtls-pq",
-  "version": "0.1.55",
+  "version": "0.1.56",
   "gypfile": true,
   "description": "DTLS with post-quantum cryptography support",
   "main": "index.js",
