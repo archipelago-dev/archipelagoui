@@ -8,7 +8,7 @@
 
 ![npm](https://img.shields.io/npm/v/@archipelagoui/archipelago)
 ![license](https://img.shields.io/npm/l/@archipelagoui/archipelago)
-![CI](https://github.com/archipelagoui/archipelago/actions/workflows/ci-publish.yml/badge.svg)
+![CI](https://github.com/hydradevorg/archipelagoui/actions/workflows/ci-publish.yml/badge.svg)
 
 ---
 
