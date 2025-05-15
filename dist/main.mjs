@@ -562,53 +562,11 @@ import * as path2 from "path";
 import * as fs2 from "fs";
 
 // core/vfs/adapter/disk-safe-vfs.ts
-import { promises as fs } from "node:fs";
 import * as path from "node:path";
-import { randomBytes } from "node:crypto";
-import EventEmitter from "node:events";
 import chokidar from "chokidar";
 
 // core/crypto/hash.ts
 import { blake3 } from "@noble/hashes/blake3";
-var Blake3 = class _Blake3 {
-  hash;
-  mac;
-  key;
-  ctx;
-  hex;
-  base64;
-  constructor(input, context, key2) {
-    const inputBytes = new TextEncoder().encode(input);
-    this.hash = blake3(inputBytes);
-    this.hex = Buffer.from(this.hash).toString("hex");
-    this.base64 = Buffer.from(this.hash).toString("base64");
-    if (key2) {
-      this.key = blake3(this.hash, { key: key2 });
-    }
-    if (context) {
-      this.ctx = blake3(this.hash, { context });
-    }
-    this.mac = blake3(this.hash, { key: new Uint8Array(32) });
-  }
-  /**
-   * Creates a new Blake3 instance and returns only the result
-   */
-  static from(input, context, key2) {
-    return new _Blake3(input, context, key2);
-  }
-  /**
-   * Convert the result to a JSON-safe object
-   */
-  toJSON() {
-    return {
-      hex: this.hex,
-      base64: this.base64,
-      mac: this.mac ? Buffer.from(this.mac).toString("hex") : "",
-      key: this.key ? Buffer.from(this.key).toString("hex") : "",
-      ctx: this.ctx ? Buffer.from(this.ctx).toString("hex") : ""
-    };
-  }
-};
 
 // core/vfs/adapter/disk-safe-vfs.ts
 import bsdiff from "bsdiff-node";
@@ -619,295 +577,33 @@ function safeCwd() {
   return "/";
 }
 var ROOT_DEFAULT = path.join(safeCwd(), "data", "vfs");
-var VERS_DIR = ".vfs_versions";
-var META_EXT = ".json";
-var DELTA_EXT = ".bsdiff";
-var safe = (root, p) => {
-  const r = path.resolve(root, p.replace(/^\/+/, ""));
-  if (!r.startsWith(root)) throw new Error("Path escape");
-  return r;
-};
-var syncClose = async (h) => {
-  if (typeof h.sync === "function") await h.sync();
-  await h.close();
-};
-var DiskSafeVFS = class extends EventEmitter {
-  constructor(opts = {}) {
-    super();
-    this.opts = opts;
-    this.root = path.resolve(opts.root ?? ROOT_DEFAULT);
-    this.crypto = opts.crypto;
-    this.versionsEnabled = opts.versioning !== false;
-    this.pruneCfg = {
-      keepLatest: 5,
-      maxVersions: 50,
-      maxAgeDays: 90,
-      maxTotalBytes: 50 * 1024 * 1024,
-      ...opts.prune
-    };
+var fs;
+var randomBytes;
+var isNode = typeof process !== "undefined" && process.versions?.node;
+if (isNode) {
+  const fsModule = await import("node:fs/promises");
+  const cryptoModule = await import("node:crypto");
+  fs = fsModule;
+  randomBytes = cryptoModule.randomBytes;
+}
+async function createDiskSafeVFS(rootDir) {
+  if (!isNode) {
+    throw new Error("Disk-safe VFS is only available in Node.js environments");
   }
-  prefix = "/";
-  scheme = "disk-safe";
-  root;
-  crypto;
-  watcher;
-  versionsEnabled;
-  pruneCfg;
-  /* ---------------- Lifecycle ---------------- */
-  async mount() {
-    await fs.mkdir(this.root, { recursive: true });
-    if (this.versionsEnabled) {
-      await fs.mkdir(path.join(this.root, VERS_DIR), { recursive: true });
+  return {
+    async readFile(filePath) {
+      const absPath = path.resolve(rootDir, filePath);
+      return fs.readFile(absPath);
+    },
+    async writeFile(filePath, data) {
+      const absPath = path.resolve(rootDir, filePath);
+      return fs.writeFile(absPath, data);
+    },
+    async randomSeed(length = 32) {
+      return randomBytes(length);
     }
-    if (this.opts.watch) {
-      this.watcher = chokidar.watch(this.root, { ignoreInitial: true, depth: Infinity });
-      ["add", "change", "unlink", "addDir", "unlinkDir"].forEach((evt) => this.watcher.on(evt, (p) => this.emit(evt, path.relative(this.root, p))));
-    }
-  }
-  async unmount() {
-    await this.watcher?.close();
-  }
-  /* ---------------- Encryption helpers ---------------- */
-  async enc(data) {
-    return this.crypto ? this.crypto.encrypt(data) : data;
-  }
-  async dec(data) {
-    return this.crypto ? this.crypto.decrypt(data) : data;
-  }
-  /* ---------------- Atomic write ---------------- */
-  async atomicWrite(full, data) {
-    const dir = path.dirname(full);
-    await fs.mkdir(dir, { recursive: true });
-    const tmp = path.join(dir, `.tmp-${randomBytes(4).toString("hex")}`);
-    const fh = await fs.open(tmp, "wx", 384);
-    await fh.writeFile(data);
-    await syncClose(fh);
-    await fs.rename(tmp, full);
-  }
-  /* ---------------- Version helpers ---------------- */
-  versDir(rel) {
-    return path.join(this.root, VERS_DIR, path.dirname(rel));
-  }
-  async latestMeta(rel) {
-    const metas = await this.listMetas(rel);
-    return metas[0] ?? null;
-  }
-  async listMetas(rel) {
-    const dir = this.versDir(rel);
-    try {
-      const files = (await fs.readdir(dir)).filter((f) => f.startsWith(path.basename(rel)) && f.endsWith(META_EXT));
-      const metas = await Promise.all(files.map(async (f) => JSON.parse((await fs.readFile(path.join(dir, f))).toString())));
-      return metas.sort((a, b) => b.ctime - a.ctime);
-    } catch {
-      return [];
-    }
-  }
-  async loadVersionData(rel, id) {
-    const dir = this.versDir(rel);
-    const base = path.join(dir, `${path.basename(rel)}.${id}`);
-    const meta = JSON.parse((await fs.readFile(base + META_EXT)).toString());
-    const stored = await this.dec(await fs.readFile(base + (meta.type === "delta" ? DELTA_EXT : ".full")));
-    let plain;
-    if (meta.type === "full") {
-      plain = stored;
-    } else {
-      const parent = await this.loadVersionData(rel, meta.parent);
-      plain = bsdiff.patch(parent, stored);
-    }
-    if (Blake3.from(plain).hex !== meta.hash) throw new Error("Version hash mismatch \u2013 data corrupted");
-    return plain;
-  }
-  async saveVersion(rel, plain) {
-    if (!this.versionsEnabled) return;
-    const dir = this.versDir(rel);
-    await fs.mkdir(dir, { recursive: true });
-    const ts = (/* @__PURE__ */ new Date()).toISOString().replace(/[:.]/g, "-");
-    const id = ts;
-    const metaName = `${path.basename(rel)}.${id}${META_EXT}`;
-    const metaPath = path.join(dir, metaName);
-    let type = "full";
-    let payload;
-    let parentId;
-    const prev = await this.latestMeta(rel);
-    if (prev) {
-      const prevPlain = await this.loadVersionData(rel, prev.id);
-      const diffBuf = bsdiff.diff(prevPlain, plain);
-      if (diffBuf.length < plain.length * 0.6) {
-        type = "delta";
-        payload = diffBuf;
-        parentId = prev.id;
-      } else {
-        payload = plain;
-      }
-    } else {
-      payload = plain;
-    }
-    const encrypted = await this.enc(payload);
-    const dataPath = metaPath.replace(META_EXT, type === "delta" ? DELTA_EXT : ".full");
-    await this.atomicWrite(dataPath, encrypted);
-    const meta = {
-      id,
-      hash: Blake3.from(plain).hex,
-      size: encrypted.length,
-      type,
-      parent: parentId,
-      ctime: Date.now()
-    };
-    await this.atomicWrite(metaPath, Buffer.from(JSON.stringify(meta)));
-    await this.pruneVersions(rel);
-  }
-  /* ---------------- Pruning ---------------- */
-  async pruneVersions(rel) {
-    const metas = await this.listMetas(rel);
-    const { keepLatest, maxVersions, maxAgeDays, maxTotalBytes } = this.pruneCfg;
-    let candidates = metas.slice(keepLatest);
-    if (metas.length > maxVersions) candidates = metas.slice(maxVersions);
-    const cutoff = Date.now() - maxAgeDays * 864e5;
-    candidates.push(...metas.filter((m) => m.ctime < cutoff));
-    let keptSize = metas.filter((m) => !candidates.includes(m)).reduce((s, m) => s + m.size, 0);
-    for (const m of metas) {
-      if (candidates.includes(m)) continue;
-      if (keptSize <= maxTotalBytes) break;
-      candidates.push(m);
-      keptSize -= m.size;
-    }
-    const toDel = [...new Set(candidates)];
-    for (const m of toDel) {
-      const base = path.join(this.versDir(rel), `${path.basename(rel)}.${m.id}`);
-      await fs.rm(base + META_EXT, { force: true });
-      await fs.rm(base + (m.type === "delta" ? DELTA_EXT : ".full"), { force: true });
-    }
-  }
-  /* ---------------- IVirtualFileSystem: open ---------------- */
-  async open(rel, mode) {
-    const full = safe(this.root, rel);
-    if (mode === "r" /* READ */) {
-      const raw = await fs.readFile(full);
-      const plain = await this.dec(raw);
-      let cursor = 0;
-      return {
-        async read(buf, len) {
-          const slice = plain.slice(cursor, cursor + len);
-          buf.set(slice);
-          cursor += slice.length;
-          return slice.length;
-        },
-        write: async () => {
-          throw new Error("read-only handle");
-        },
-        seek: async (off, whence) => {
-          cursor = whence === "SET" ? off : whence === "CUR" ? cursor + off : plain.length + off;
-        },
-        flush: async () => {
-        },
-        close: async () => {
-        },
-        getInfo: async () => this.info(rel)
-      };
-    }
-    const chunks = [];
-    return {
-      async read() {
-        throw new Error("write-only handle");
-      },
-      async write(chunk) {
-        chunks.push(chunk);
-        return chunk.length;
-      },
-      async seek() {
-      },
-      async flush() {
-      },
-      close: async () => {
-        const plain = Uint8Array.from(Buffer.concat(chunks));
-        await this.saveVersion(rel, plain);
-        await this.atomicWrite(full, await this.enc(plain));
-      },
-      getInfo: async () => this.info(rel)
-    };
-  }
-  /* ---------------- Convenience & Metadata ---------------- */
-  async exists(p) {
-    try {
-      await fs.access(safe(this.root, p));
-      return true;
-    } catch {
-      return false;
-    }
-  }
-  async info(p) {
-    const st = await fs.stat(safe(this.root, p));
-    return { path: p, size: st.size, mtime: st.mtimeMs, isDir: st.isDirectory() };
-  }
-  async readFile(p) {
-    return this.dec(await fs.readFile(safe(this.root, p)));
-  }
-  async writeFile(p, data) {
-    await this.saveVersion(p, data);
-    await this.atomicWrite(safe(this.root, p), await this.enc(data));
-  }
-  async delete(p) {
-    if (await this.exists(p)) {
-      const current = await this.readFile(p);
-      await this.saveVersion(p, current);
-      await fs.rm(safe(this.root, p), { force: true });
-    }
-  }
-  async mkdir(p) {
-    await fs.mkdir(safe(this.root, p), { recursive: true });
-  }
-  async rmdir(p, recursive = false) {
-    await fs.rm(safe(this.root, p), { recursive, force: true });
-  }
-  async list(rel = "/") {
-    const out = [];
-    const recurse = async (dirRel) => {
-      const abs = safe(this.root, dirRel);
-      for (const ent of await fs.readdir(abs, { withFileTypes: true })) {
-        const childRel = path.join(dirRel, ent.name);
-        out.push(await this.info(childRel));
-        if (ent.isDirectory()) await recurse(childRel);
-      }
-    };
-    await recurse(rel);
-    return out;
-  }
-  async readdir(rel = "/") {
-    return (await this.list(rel)).filter((f) => path.dirname(f.path) === rel);
-  }
-  async stat(p) {
-    return await this.exists(p) ? await this.info(p) : null;
-  }
-  async copy(src, dst) {
-    await fs.cp(safe(this.root, src), safe(this.root, dst), { recursive: true });
-  }
-  async rename(src, dst) {
-    await fs.rename(safe(this.root, src), safe(this.root, dst));
-  }
-  /* ---------------- Version public helpers ---------------- */
-  async listVersions(p) {
-    return this.listMetas(p);
-  }
-  async restoreVersion(p, id) {
-    const data = await this.loadVersionData(p, id);
-    await this.atomicWrite(safe(this.root, p), await this.enc(data));
-  }
-  // @ts-ignore
-  async purgeVersions(p, keepLatest = this.pruneCfg.keepLatest) {
-    const metas = await this.listMetas(p);
-    for (const m of metas.slice(keepLatest)) {
-      const base = path.join(this.versDir(p), `${path.basename(p)}.${m.id}`);
-      await fs.rm(base + META_EXT, { force: true });
-      await fs.rm(base + (m.type === "delta" ? DELTA_EXT : ".full"), { force: true });
-    }
-  }
-  async create(p) {
-    const full = safe(this.root, p);
-    await fs.mkdir(path.dirname(full), { recursive: true });
-    await fs.writeFile(full, Buffer.alloc(0));
-  }
-};
-var createDiskSafeVFS = (root, crypto, opts = {}) => new DiskSafeVFS({ root, crypto, ...opts });
+  };
+}
 
 // main.ts
 var cert = fs2.readFileSync(

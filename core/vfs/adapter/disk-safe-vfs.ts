@@ -357,5 +357,36 @@ export class DiskSafeVFS extends EventEmitter implements IVirtualFileSystem {
     }
 }
 
-export const createDiskSafeVFS = (root?: string, crypto?: EncryptionScheme, opts: Omit<DiskOpts, 'root' | 'crypto'> = {}) =>
-    new DiskSafeVFS({ root, crypto, ...opts });
+let fs: typeof import('fs/promises');
+let randomBytes: typeof import('crypto').randomBytes;
+
+const isNode = typeof process !== 'undefined' && process.versions?.node;
+
+if (isNode) {
+    const fsModule = await import('node:fs/promises');
+    const cryptoModule = await import('node:crypto');
+    fs = fsModule;
+    randomBytes = cryptoModule.randomBytes;
+}
+
+export async function createDiskSafeVFS(rootDir: string) {
+    if (!isNode) {
+        throw new Error('Disk-safe VFS is only available in Node.js environments');
+    }
+
+    return {
+        async readFile(filePath: string) {
+            const absPath = path.resolve(rootDir, filePath);
+            return fs.readFile(absPath);
+        },
+
+        async writeFile(filePath: string, data: Uint8Array) {
+            const absPath = path.resolve(rootDir, filePath);
+            return fs.writeFile(absPath, data);
+        },
+
+        async randomSeed(length = 32): Promise<Uint8Array> {
+            return randomBytes(length);
+        }
+    };
+}
