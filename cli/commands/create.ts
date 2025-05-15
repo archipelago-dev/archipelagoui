@@ -1,12 +1,22 @@
-// @ts-ignore
-import path from "path";
+
 // @ts-ignore
 import fs from "fs-extra";
 // @ts-ignore
 import prompts from "prompts";
 import open from "open";
+import * as path from 'path';
+import { fileURLToPath } from 'url';
 
-const SCAFFOLD_BASE = path.resolve("scaffolding", "default");
+// Required when using ESM modules:
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// Dynamically resolve installed package path:
+const archipelagoPath = path.dirname(require.resolve('@archipelagoui/archipelago/package.json'));
+
+// Scaffold template path:
+const templatePath = path.join(archipelagoPath, 'scaffolding', 'default'); // or any subfolder
+
+const SCAFFOLD_BASE = templatePath;
 
 export async function runCreate(
     type: string,
