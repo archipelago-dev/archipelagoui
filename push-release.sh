@@ -22,11 +22,11 @@ git push origin v$VERSION
 echo "📦 Publishing @archipelagoui/archipelago..."
   # adjust if different
 pnpm publish --access public
-cd - > /dev/null
+
 
 echo "📦 Publishing archy-cli..."
 cd cli  # adjust if different
 pnpm publish --access public
-cd - > /dev/null
+cd ..
 
 echo "✅ All done! Version v$VERSION published to npm."
