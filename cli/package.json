@@ -19,7 +19,7 @@
     "pako": "^2.1.0",
     "superfalcon": "^2.0.6",
     "ws": "^8.16.0",
-    "@archipelagoui/archipelago": "^0.1.35",
+    "@archipelagoui/archipelago": "^0.1.39",
     "@noble/hashes": "*"
   },
   "devDependencies": {
