@@ -29,13 +29,13 @@ export async function createCryptoBundle(opts: TransportOptions): Promise<Crypto
     switch (algorithm) {
         case TransportAlgorithm.KYBER_AES_GCM:
             const aesKey = await generateAesKey();
-            encryption = new AESGCM(aesKey);
+            encryption = new AESGCM(aesKey) as unknown as EncryptionScheme;
             exchange = new KyberKeyExchange();
             break;
 
         case TransportAlgorithm.AES_GCM:
         default:
-            encryption = new AESGCM(await generateAesKey());
+            encryption = new AESGCM(await generateAesKey()) as unknown as EncryptionScheme;
             exchange = new KyberKeyExchange(); // default fallback to Kyber even if not encapsulated
             break;
     }

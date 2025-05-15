@@ -8,7 +8,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as crypto from 'crypto';
-import * as kyber from './kyber';
+import {
+
+createKyberExchange, KyberKeyExchange } from './kyber';
+
 import * as falcon from './falcon';
 
 const TICKET_STORE = new Map<string, Uint8Array>();  // memory MVP
@@ -170,9 +173,8 @@ export class KeyManager {
    */
   public async generateEncryptionKey(): Promise<string> {
     // Generate new Kyber key pair
-    const keyPair = await kyber.kyberKeyPair();
-    
-    // Create key ID and metadata
+    const kex = await createKyberExchange();
+    const keyPair: KeyPair = await kex.generateKeyPair();
     const keyId = crypto.randomUUID();
     const metadata: KeyMetadata = {
       id: keyId,
