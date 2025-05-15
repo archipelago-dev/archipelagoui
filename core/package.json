@@ -1,6 +1,6 @@
 {
   "name": "@archipelagoui/core",
-  "version": "0.1.42",
+  "version": "0.1.45",
   "description": "",
   "main": "index.js",
   "type": "module",

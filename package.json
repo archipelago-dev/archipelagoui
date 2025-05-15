@@ -1,6 +1,6 @@
 {
   "name": "@archipelagoui/archipelago",
-  "version": "0.1.42",
+  "version": "0.1.45",
   "description": "early stage archipelago UI web framework do not use",
   "main": "main.ts",
   "module": "dist/main.mjs",
