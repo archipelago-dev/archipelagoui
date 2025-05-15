@@ -6,17 +6,13 @@ import prompts from "prompts";
 import open from "open";
 import * as path from 'path';
 import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 
-// Required when using ESM modules:
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const require = createRequire(import.meta.url);
 
-// Dynamically resolve installed package path:
-const archipelagoPath = path.dirname(require.resolve('@archipelagoui/archipelago/package.json'));
+const pkgPath = require.resolve('@archipelagoui/archipelago/package.json');
+const SCAFFOLD_BASE:string = path.join(path.dirname(pkgPath), 'scaffolding', 'default');
 
-// Scaffold template path:
-const templatePath = path.join(archipelagoPath, 'scaffolding', 'default'); // or any subfolder
-
-const SCAFFOLD_BASE = templatePath;
 
 export async function runCreate(
     type: string,
