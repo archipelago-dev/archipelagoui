@@ -1,0 +1,23 @@
+{
+  "name": "archipelago-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+   "@archipelagoui/core": "workspace:*",
+    "react": "^19.0.0-rc.1",
+    "@archipelagoui/ui": "workspace:*",
+    "@archipelagoui/cli": "workspace:*",
+    "@tailwindcss/vite": "^4.1.6"
+  },
+  "devDependencies": {
+    "vite": "catalog:",
+    "typescript": "^5.1.6",
+    "@types/node": "^22.15.17"
+  }
+}

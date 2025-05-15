@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "outDir": "../../dist/ts-dtls",
+    "rootDir": "./",
+    "strict": false,
+    "declaration": true,
+    "sourceMap": true
+  },
+  "include": ["./**/*"],
+  "exclude": ["node_modules"]
+}

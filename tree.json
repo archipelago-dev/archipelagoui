@@ -1,0 +1,138 @@
+{
+  "archipelago.config.ts": [],
+  "cli/cli.ts": [
+    "cli/commands/build.ts",
+    "cli/commands/create.ts",
+    "cli/commands/dev.ts",
+    "cli/commands/history.ts",
+    "cli/commands/pre-compile.ts",
+    "cli/commands/start.ts",
+    "cli/commands/verify.ts",
+    "cli/utils/config.ts",
+    "cli/utils/history.ts",
+    "cli/utils/update.ts"
+  ],
+  "cli/commands/build.ts": [],
+  "cli/commands/create.ts": [],
+  "cli/commands/dev.ts": [],
+  "cli/commands/history.ts": [],
+  "cli/commands/pre-compile.ts": [],
+  "cli/commands/start.ts": [],
+  "cli/commands/static.ts": [],
+  "cli/commands/verify.ts": [],
+  "cli/utils/config.ts": [],
+  "cli/utils/history.ts": [],
+  "cli/utils/update.ts": [
+    "cli/utils/version.ts"
+  ],
+  "cli/utils/version.ts": [],
+  "cli/web/web-setup-server.ts": [],
+  "components/LocalWidget.archy.tsx": [],
+  "components/syntax-example.archy.tsx": [],
+  "core-libs/ui/package.json": [],
+  "core-libs/ui/src/components/Card.tsx": [],
+  "core-libs/ui/src/components/Title.tsx": [],
+  "core-libs/ui/src/index.ts": [
+    "core-libs/ui/src/components/Card.tsx",
+    "core-libs/ui/src/components/Title.tsx"
+  ],
+  "core-libs/ui/tsconfig.build.json": [],
+  "core/runtime/ArchipelagoRenderer.ts": [
+    "core/runtime/hydrate.ts",
+    "core/runtime/module-manager.ts",
+    "core/runtime/registry.ts"
+  ],
+  "core/runtime/dev-overlay.ts": [],
+  "core/runtime/hydrate.ts": [
+    "core/runtime/module-manager.ts",
+    "core/runtime/mount.ts",
+    "core/runtime/parse.ts",
+    "core/runtime/registry.ts",
+    "core/runtime/scheduler.ts"
+  ],
+  "core/runtime/hydration-controller.ts": [],
+  "core/runtime/index.ts": [
+    "core/runtime/hydration-controller.ts",
+    "core/runtime/lazy-import.ts",
+    "core/runtime/pubsub.ts",
+    "core/runtime/utils.ts"
+  ],
+  "core/runtime/lazy-import.ts": [
+    "core/runtime/hydration-controller.ts",
+    "core/runtime/pubsub.ts",
+    "core/runtime/utils.ts"
+  ],
+  "core/runtime/module-manager.ts": [],
+  "core/runtime/mount.ts": [
+    "core/runtime/dev-overlay.ts",
+    "core/runtime/module-manager.ts",
+    "core/runtime/parse.ts"
+  ],
+  "core/runtime/parse.ts": [],
+  "core/runtime/pubsub.ts": [],
+  "core/runtime/registry.ts": [],
+  "core/runtime/scheduler.ts": [],
+  "core/runtime/utils.ts": [],
+  "esbuild-plugins/esbuild-plugin/archipelago.ts": [],
+  "esbuild.config.ts": [],
+  "gen/generate-glob-imports.ts": [],
+  "gen/generate-jsx-types.ts": [],
+  "index.html": [],
+  "main.ts": [],
+  "module-repository/modules/auth-bridge/setup.config.json": [],
+  "package.json": [],
+  "pnpm-lock.yaml": [],
+  "pnpm-workspace.yaml": [],
+  "scaffolding/default/.archipelago/tsconfig.json": [],
+  "scaffolding/default/tsconfig.json": [],
+  "scaffolding/main.ts": [
+    "syntax/language.generated.d.ts"
+  ],
+  "scaffolding/package.json": [],
+  "scaffolding/src/vite.config.ts": [],
+  "scaffolding/tsconfig.json": [],
+  "src/archipelago.config.ts": [],
+  "src/esbuild.config.ts": [
+    "esbuild-plugins/esbuild-plugin/archipelago.ts"
+  ],
+  "src/main.ts": [
+    "syntax/language.generated.d.ts"
+  ],
+  "src/vite.config.ts": [
+    "vite-plugin-archipelago/index.ts"
+  ],
+  "syntax/components.generated.ts": [
+    "components/LocalWidget.archy.tsx",
+    "components/syntax-example.archy.tsx"
+  ],
+  "syntax/components.json": [],
+  "syntax/language.generated.d.ts": [],
+  "syntax/stubs/ActionButton.ts": [],
+  "syntax/stubs/Card.ts": [],
+  "syntax/stubs/Component.ts": [],
+  "syntax/stubs/Computed.ts": [],
+  "syntax/stubs/Content.ts": [],
+  "syntax/stubs/Description.ts": [],
+  "syntax/stubs/Details.ts": [],
+  "syntax/stubs/Div.ts": [],
+  "syntax/stubs/Island.ts": [],
+  "syntax/stubs/LazyImport.ts": [],
+  "syntax/stubs/LazyImportAsync.ts": [],
+  "syntax/stubs/LazyImportSync.ts": [],
+  "syntax/stubs/Message.ts": [],
+  "syntax/stubs/Navbar.ts": [],
+  "syntax/stubs/Page.ts": [],
+  "syntax/stubs/Slot.ts": [],
+  "syntax/stubs/Title.ts": [],
+  "syntax/stubs/UserCard.ts": [],
+  "syntax/stubs/UserSettingsPanel.ts": [],
+  "syntax/stubs/WidgetBox.ts": [],
+  "tree.json": [],
+  "tsconfig.json": [],
+  "tsup.config.ts": [],
+  "vite-plugin-archipelago/index.ts": [],
+  "vite-plugin-archipelago/vite-plugin-archipelago.ts": [],
+  "vite.config.ts": [
+    "vite-plugin-archipelago/index.ts"
+  ]
+}

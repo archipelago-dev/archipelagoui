@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "outDir": "dist",
+    "rootDir": ".",
+    "declaration": true,
+    "declarationDir": "dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "incremental": false
+  },
+  "include": [
+    "src/index.ts",
+    "src",
+    "jest"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "jest"  ]
+}

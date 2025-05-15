@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "typeRoots": ["../../core-libs/ui/dist", "./node_modules/@types"],
+    "extends": "../tsconfig.json",
+    "types": [],
+    "baseUrl": "./",
+    "paths": {
+      "*": ["types/*"],
+      "@archipelagoui/ui": ["../../core-libs/ui/src"]
+    }
+  },
+  "include": [
+    ".archipelago/**/*",
+    ".archipelago/**/*.d.ts",
+  ]
+}

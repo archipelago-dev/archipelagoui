@@ -1,0 +1,20 @@
+{
+  "user": {
+    "id": "abc123",
+    "name": "Nicolas Cloutier",
+    "email": "nicolas@example.com",
+    "roles": ["admin", "dev"],
+    "active": true
+  },
+  "session": {
+    "createdAt": "2024-01-01T12:00:00Z",
+    "expiresIn": 3600,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+  },
+  "features": {
+    "ostCompression": true,
+    "p2p": true,
+    "streaming": true,
+    "quantumSegmentation": true
+  }
+}

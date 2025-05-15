@@ -1,0 +1,26 @@
+{
+  "name": "@archipelagoui/core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.10.0",
+  "dependencies": {
+    "@btq-js/falcon-js": "^0.0.38",
+    "mlkem": "^2.3.1",
+    "superfalcon": "^2.0.6",
+    "bsdiff-node": "^2.5.0"
+  },
+  "devDependencies": {
+"@types/node": "^20.6.0",
+    "typescript": "^5.2.2",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0"
+  }
+}

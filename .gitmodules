@@ -1,0 +1,6 @@
+[submodule "dtls"]
+	path = dtls
+	url = https://github.com/pion/dtls
+[submodule "hydra_compression/liboqs"]
+	path = hydra_compression/liboqs
+	url = https://github.com/open-quantum-safe/liboqs

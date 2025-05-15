@@ -1,0 +1,15 @@
+packages:
+  - '*'
+  - core-libs/*
+  - scaffolding/default
+  - cli
+  - server
+  - core/*
+catalog:
+  vite: ^6.3.5
+onlyBuiltDependencies:
+  - '@tailwindcss/oxide'
+  - bsdiff-node
+  - esbuild
+  - liboqs-node
+  - vite

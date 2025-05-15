@@ -1,0 +1,4 @@
+cli
+node_modules
+.env
+*.env

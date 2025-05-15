@@ -1,0 +1,21 @@
+// File: modules/auth-bridge/setup.config.json
+{
+  "name": "AuthBridge",
+  "description": "Adds user authentication hooks with JWT and optional ZKP support.",
+  "options": [
+    {
+      "key": "enableZKP",
+      "type": "boolean",
+      "label": "Enable Zero-Knowledge Proofs",
+      "default": false
+    },
+    {
+      "key": "provider",
+      "type": "select",
+      "label": "Authentication Provider",
+      "choices": ["Firebase", "Auth0", "Supabase", "Custom"],
+      "default": "Custom"
+    }
+  ]
+}
+
