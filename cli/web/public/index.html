@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Archipelago Setup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@4.1.6/index.min.css">
+    <link href="/assets/global.css" rel="stylesheet" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-950 text-white font-sans p-6">
+<header class="flex items-center gap-4 mb-6">
+    <img src="/assets/images/logo.svg" class="w-10 h-10" alt="Logo" />
+    <h1 class="text-2xl font-bold tracking-wide">Archipelago Setup</h1>
+</header>
+
+<form id="setup-form" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+    <!-- left pane: form -->
+    <div class="space-y-6">
+        <label class="block">
+            <span class="text-sm font-semibold">App Name</span>
+            <input name="name" required class="w-full mt-1 p-2 rounded bg-gray-800 border border-gray-700" />
+        </label>
+
+        <fieldset>
+            <legend class="text-sm font-semibold mb-2">Features</legend>
+            <label class="block"><input type="checkbox" name="features" value="edge" /> Edge</label>
+            <label class="block"><input type="checkbox" name="features" value="ssr" /> SSR</label>
+            <label class="block"><input type="checkbox" name="features" value="static" /> Static</label>
+        </fieldset>
+
+        <fieldset>
+            <legend class="text-sm font-semibold mb-2">Modules</legend>
+            <div id="module-list" class="text-sm text-gray-300">Loading...</div>
+        </fieldset>
+
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded">
+            <i class="fa-solid fa-rocket mr-2"></i> Create App
+        </button>
+    </div>
+
+    <!-- right pane: project preview -->
+    <div class="bg-gray-900 rounded border border-gray-800 p-4 overflow-auto h-full">
+        <h2 class="text-lg font-semibold mb-2">Project Preview</h2>
+        <pre id="project-preview" class="text-xs text-green-400 whitespace-pre-wrap">...</pre>
+    </div>
+</form>
+
+<!-- CLI command buttons -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <button data-cmd="dev" class="cmd-button"><i class="fa-solid fa-play"></i> Dev</button>
+    <button data-cmd="build" class="cmd-button"><i class="fa-solid fa-hammer"></i> Build</button>
+    <button data-cmd="verify" class="cmd-button"><i class="fa-solid fa-vial"></i> Verify</button>
+    <button data-cmd="pre-compile" class="cmd-button"><i class="fa-solid fa-code-branch"></i> Pre-Compile</button>
+</section>
+
+<section class="mt-10">
+    <h2 class="text-lg font-semibold mb-2">🧪 CLI Output</h2>
+    <pre id="cli-output" class="bg-black text-green-400 p-4 text-xs h-64 overflow-y-auto rounded"></pre>
+</section>
+
+
+<script src="setup.js"></script>
+<style>
+    .cmd-button {
+        @apply bg-gray-800 hover:bg-gray-700 px-4 py-2 text-sm rounded text-white font-medium flex items-center justify-center gap-2;
+    }
+
+</style>
+</body>
+</html>
