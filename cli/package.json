@@ -1,7 +1,7 @@
 {
   "name": "archy-cli",
   "private": false,
-  "version": "0.1.34",
+  "version": "0.1.36",
   "scripts": {
     "build": "tsup"
   },
@@ -19,7 +19,7 @@
     "pako": "^2.1.0",
     "superfalcon": "^2.0.6",
     "ws": "^8.16.0",
-    "@archipelagoui/archipelago": "^0.1.5-archy.2",
+    "@archipelagoui/archipelago": "^0.1.36",
     "@noble/hashes": "*"
   },
   "devDependencies": {
