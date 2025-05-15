@@ -8,8 +8,7 @@ packages:
 catalog:
   vite: ^6.3.5
 onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
+  - '@tailwindcss/vite-plugin'
   - bsdiff-node
   - esbuild
-  - liboqs-node
   - vite

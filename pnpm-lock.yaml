@@ -17,13 +17,13 @@ importers:
       '@algorithm.ts/huffman':
         specifier: ^4.0.4
         version: 4.0.4
-      '@archipelago/cli':
+      '@archipelagoui/cli':
         specifier: workspace:*
         version: link:cli
-      '@archipelago/core':
+      '@archipelagoui/core':
         specifier: workspace:*
         version: link:core
-      '@archipelago/ui':
+      '@archipelagoui/ui':
         specifier: workspace:*
         version: link:core-libs/ui
       '@noble/hashes':
@@ -150,7 +150,7 @@ importers:
 
   cli:
     dependencies:
-      '@archipelago/ui':
+      '@archipelagoui/ui':
         specifier: workspace:*
         version: link:../core-libs/ui
       '@noble/hashes':
@@ -256,13 +256,13 @@ importers:
 
   scaffolding:
     dependencies:
-      '@archipelago/cli':
+      '@archipelagoui/cli':
         specifier: workspace:*
         version: link:../cli
-      '@archipelago/core':
+      '@archipelagoui/core':
         specifier: workspace:*
         version: link:../core
-      '@archipelago/ui':
+      '@archipelagoui/ui':
         specifier: workspace:*
         version: link:../core-libs/ui
       '@tailwindcss/vite':
@@ -284,13 +284,13 @@ importers:
 
   scaffolding/default:
     dependencies:
-      '@archipelago/cli':
+      '@archipelagoui/cli':
         specifier: workspace:*
         version: link:../../cli
-      '@archipelago/core':
+      '@archipelagoui/core':
         specifier: workspace:*
         version: link:../../core
-      '@archipelago/ui':
+      '@archipelagoui/ui':
         specifier: workspace:*
         version: link:../../core-libs/ui
       '@tailwindcss/vite':

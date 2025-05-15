@@ -1,6 +1,6 @@
 {
   "name": "@archipelagoui/archipelago",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "description": "early stage archipelago UI web framework do not use",
   "main": "main.ts",
   "module": "dist/main.mjs",
@@ -9,6 +9,9 @@
   "bin": {
     "archy": "dist/cli.mjs"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "generate:types": "pnpm exec tsx gen/generate-jsx-types.ts ./components",
     "generate:imports": "pnpm exec tsx gen/generate-glob-imports.ts ./components",
@@ -58,12 +61,11 @@
   },
   "dependencies": {
     "@algorithm.ts/huffman": "^4.0.4",
-    "@archipelagoui/cli": "workspace:*",
-    "@archipelagoui/core": "workspace:*",
-    "@archipelagoui/ui": "workspace:*",
+    "@archipelagoui/cli": "0.1.1",
+    "@archipelagoui/core": "0.1.1",
     "@noble/hashes": "^1.8.0",
-    "@tailwindcss/vite": "^4.1.6",
-    "archipelago": "link:",
+    "@tailwindcss/vite": "^4.1.7",
+    "@archipelagoui/archipelago": "0.1.1",
     "body-parser": "^2.2.0",
     "bsdiff-node": "^2.5.0",
     "chokidar": "^4.0.3",
@@ -72,19 +74,62 @@
     "express": "^5.1.0",
     "fs-extra": "^11.3.0",
     "idb-keyval": "^6.2.2",
-    "liboqs-node": "^0.1.0",
     "madge": "^6.1.0",
     "mlkem": "^2.3.1",
     "open": "^10.1.2",
     "pako": "^2.1.0",
     "postcss": "^8.5.3",
     "prompts": "^2.4.2",
-    "react": "^18.3.1",
+    "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "superfalcon": "^2.0.6",
     "tailwindcss": "^4.1.6",
     "tsup": "^8.4.0",
-    "tsx": "^4.19.4",
-    "vite-tsconfig-paths": "^5.1.4"
-  }
+    "tsx": "^4.19.4"
+  },
+  "esnext": {},
+  "private": false,
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false,
+    "child_process": false,
+    "net": false,
+    "tls": false,
+    "http": false,
+    "https": false,
+    "zlib": false
+  },
+  "engineStrict": false,
+  "os": [],
+  "publishConfig": {
+    "access": "public"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "moduleNameMapper": {
+      "\\.(css|less|scss)$": "<rootDir>/__mocks__/styleMock.js"
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest.setup.js"
+    ]
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    }
+  ],
+  "typings": "gen/index.d.ts",
+  "peerDependenciesMeta": {},
+  "contributors": [],
+  "config": {},
+  "homepage": ""
 }
