@@ -1,6 +1,6 @@
 {
   "name": "@archipelagoui/archipelago",
-  "version": "0.1.26",
+  "version": "0.1.27",
   "description": "early stage archipelago UI web framework do not use",
   "main": "main.ts",
   "module": "dist/main.mjs",
@@ -124,7 +124,7 @@
   ],
   "publishConfig": {
     "access": "public",
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://registry.npmjs.org/"
   },
   "typings": "gen/index.d.ts",
   "peerDependenciesMeta": {},
