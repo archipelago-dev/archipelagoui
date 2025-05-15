@@ -5,13 +5,11 @@ import fs from "fs-extra";
 import prompts from "prompts";
 import open from "open";
 import * as path from 'path';
-import { fileURLToPath } from 'url';
-import { createRequire } from 'module';
+import { resolve } from 'import-meta-resolve';
 
-const require = createRequire(import.meta.url);
-
-const pkgPath = require.resolve('@archipelagoui/archipelago/package.json');
-const SCAFFOLD_BASE:string = path.join(path.dirname(pkgPath), 'scaffolding', 'default');
+const pkgPath = new URL(resolve('@archipelagoui/archipelago/package.json', import.meta.url)).pathname;
+console.log(`Package path: ${pkgPath}`);
+const SCAFFOLD_BASE = path.join(path.dirname(pkgPath), 'scaffolding', 'default');
 
 
 export async function runCreate(

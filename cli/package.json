@@ -1,7 +1,7 @@
 {
   "name": "archy-cli",
   "private": false,
-  "version": "0.1.45",
+  "version": "0.1.46",
   "scripts": {
     "build": "tsup"
   },
@@ -9,20 +9,22 @@
     "archy": "dist/cli.mjs"
   },
   "dependencies": {
+    "@archipelagoui/archipelago": "^0.1.46",
+    "@noble/hashes": "*",
     "body-parser": "^2.2.0",
     "chokidar": "^4.0.3",
     "commander": "^13.1.0",
     "express": "^5.1.0",
     "fs-extra": "^11.2.0",
     "open": "^10.1.2",
-    "prompts": "^2.4.2",
     "pako": "^2.1.0",
+    "prompts": "^2.4.2",
     "superfalcon": "^2.0.6",
     "ws": "^8.16.0",
-    "@archipelagoui/archipelago": "^0.1.42",
-    "@noble/hashes": "*"
+    "import-meta-resolve": "^4.1.0"
   },
   "devDependencies": {
+    "import-meta-resolve": "^4.1.0",
     "tsup": "^8.4.0",
     "typescript": "^5.3.3"
   }
