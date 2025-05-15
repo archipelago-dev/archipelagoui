@@ -1,4 +1,4 @@
-
+#!/usr/bin/env node
 import { Command } from "commander";
 import { loadConfig } from "./utils/config.js";
 import { checkForCliUpdates, applyCliUpdate } from "./utils/update.js";

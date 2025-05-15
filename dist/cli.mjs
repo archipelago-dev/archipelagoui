@@ -1,12 +1,4 @@
 #!/usr/bin/env node
-
-  } ,
-  onSuccess: () => {
-    console.log("Build complete!");
-  },
-  onError: (error) => {
-    console.error("Build failed:", error);
-  }
 var __defProp = Object.defineProperty;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {

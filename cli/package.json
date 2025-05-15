@@ -1,7 +1,7 @@
 {
   "name": "@archipelagoui/cli",
   "private": true,
-  "version": "0.1.5-archy.1",
+  "version": "0.1.5-archy.2",
   "scripts": {
     "build": "tsup"
   },
