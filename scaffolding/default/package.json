@@ -9,8 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@archipelagoui/core": "workspace:*",
-    "@archipelagoui/ui": "workspace:*",
+    "@archipelagoui/archipelago": "^0.1.54",
     "@tailwindcss/vite": "^4.1.6",
     "browserify-fs": "^1.0.0",
     "events": "^3.3.0",

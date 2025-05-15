@@ -9,7 +9,7 @@
     "archy": "./dist/cli.mjs"
   },
   "dependencies": {
-    "@archipelagoui/archipelago": "^0.1.54",
+    "@archipelagoui/archipelago": "^0.1.55",
     "@noble/hashes": "*",
     "body-parser": "^2.2.0",
     "chokidar": "^4.0.3",
