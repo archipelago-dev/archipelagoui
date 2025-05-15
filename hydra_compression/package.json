@@ -1,6 +1,6 @@
 {
   "name": "hydra-compression",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "TypeScript DTLS implementation with post-quantum cryptography support",
   "main": "dist/ts-dtls/index.js",
   "types": "dist/ts-dtls/index.d.ts",
