@@ -22,7 +22,8 @@
     "test": "jest",
     "test:ost": "tsx scripts/ost-test.ts",
     "run:example:transport-memory": "tsx examples/secure-memory-demo.ts",
-    "run:example:transport-file": "tsx examples/example-transport-file.ts"
+    "run:example:transport-file": "tsx examples/example-transport-file.ts",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -55,7 +56,8 @@
     "tsup": "^8.4.0",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",
-    "vite": "catalog:"
+    "vite": "catalog:",
+    "husky": "^8.0.0"
   },
   "dependencies": {
     "@algorithm.ts/huffman": "^4.0.4",

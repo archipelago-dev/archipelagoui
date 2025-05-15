@@ -2,7 +2,7 @@ import { defineConfig } from "tsup";
 
 export default defineConfig({
   entry: ["cli.ts"],
-  outDir: "../dist", // puts output in root-level /dist
+  outDir: "./dist", // puts output in root-level /dist
   format: ["esm"],
   target: "node2022",
   clean: true,

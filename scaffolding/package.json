@@ -12,7 +12,7 @@
     "@archipelagoui/core": "workspace:*",
     "react": "^19.0.0-rc.1",
     "@archipelagoui/ui": "workspace:*",
-    "@archipelagoui/cli": "workspace:*",
+   "react-dom": "^19.0.0-rc.1",
     "@tailwindcss/vite": "^4.1.6"
   },
   "devDependencies": {

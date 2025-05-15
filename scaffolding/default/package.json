@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@archipelagoui/cli": "workspace:*",
+
     "@archipelagoui/core": "workspace:*",
     "@archipelagoui/ui": "workspace:*",
     "@tailwindcss/vite": "^4.1.6",

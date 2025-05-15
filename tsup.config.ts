@@ -4,7 +4,7 @@ import { defineConfig } from 'tsup';
 function asMjs() {
     return {
         // change every “.js” that esbuild would write for ESM build‑targets
-        esbuildOptions(options) {
+        esbuildOptions(options:any) {
             options.outExtension = { '.js': '.mjs' };
         },
     };
@@ -26,22 +26,4 @@ export default defineConfig([
 
     },
 
-    /* ─── CLI bundle ────────────────────────────────────────────────── */
-    {
-        entry: ['cli/cli.ts'],
-        outDir: 'dist',
-        format: ['esm'],
-        shims: true,              //  ← same here
-        splitting: false,
-        dts: false,
-        clean: false,
-        sourcemap: true,
-        target: 'es2020',
-        external: [
-            '@archipelagoui/core',
-            '@archipelagoui/ui',
-            'mlkem',
-            'superfalcon'
-        ]
-    }
 ]);

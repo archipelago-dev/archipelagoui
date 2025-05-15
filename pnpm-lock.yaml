@@ -114,6 +114,9 @@ importers:
       esbuild:
         specifier: ^0.25.4
         version: 0.25.4
+      husky:
+        specifier: ^8.0.0
+        version: 8.0.3
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@22.15.18)(ts-node@10.9.2(@types/node@22.15.18)(typescript@5.8.3))
@@ -132,9 +135,9 @@ importers:
 
   cli:
     dependencies:
-      '@archipelagoui/ui':
-        specifier: workspace:*
-        version: link:../core-libs/ui
+      '@archipelagoui/archipelago':
+        specifier: ^0.1.5-archy.2
+        version: 0.1.5-archy.2(jiti@2.4.2)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.19.4))
       '@noble/hashes':
         specifier: '*'
         version: 1.8.0
@@ -214,76 +217,6 @@ importers:
         specifier: ^5.3.3
         version: 5.8.3
 
-  demo_app:
-    dependencies:
-      '@archipelagoui/cli':
-        specifier: workspace:*
-        version: link:../cli
-      '@archipelagoui/core':
-        specifier: workspace:*
-        version: link:../core
-      '@archipelagoui/ui':
-        specifier: workspace:*
-        version: link:../core-libs/ui
-      '@tailwindcss/vite':
-        specifier: ^4.1.6
-        version: 4.1.7(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.19.4))
-      browserify-fs:
-        specifier: ^1.0.0
-        version: 1.0.0
-      events:
-        specifier: ^3.3.0
-        version: 3.3.0
-      process:
-        specifier: ^0.11.10
-        version: 0.11.10
-      react:
-        specifier: ^19.0.0-rc.1
-        version: 19.1.0
-      stream-browserify:
-        specifier: ^3.0.0
-        version: 3.0.0
-      util:
-        specifier: ^0.12.5
-        version: 0.12.5
-    devDependencies:
-      '@esbuild-plugins/node-globals-polyfill':
-        specifier: ^0.2.3
-        version: 0.2.3(esbuild@0.25.4)
-      '@esbuild-plugins/node-modules-polyfill':
-        specifier: ^0.2.2
-        version: 0.2.2(esbuild@0.25.4)
-      '@rollup/plugin-inject':
-        specifier: ^5.0.5
-        version: 5.0.5(rollup@4.40.2)
-      '@types/node':
-        specifier: ^22.15.17
-        version: 22.15.18
-      buffer:
-        specifier: ^6.0.3
-        version: 6.0.3
-      crypto-browserify:
-        specifier: ^3.12.1
-        version: 3.12.1
-      path-browserify:
-        specifier: ^1.0.1
-        version: 1.0.1
-      rollup-plugin-node-polyfills:
-        specifier: ^0.2.1
-        version: 0.2.1
-      rollup-plugin-polyfill-node:
-        specifier: ^0.13.0
-        version: 0.13.0(rollup@4.40.2)
-      typescript:
-        specifier: ^5.1.6
-        version: 5.8.3
-      vite:
-        specifier: 6.3.5
-        version: 6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.19.4)
-      vite-plugin-node-polyfills:
-        specifier: ^0.23.0
-        version: 0.23.0(rollup@4.40.2)(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.19.4))
-
   hydra_compression:
     dependencies:
       mlkem:
@@ -308,9 +241,6 @@ importers:
 
   scaffolding:
     dependencies:
-      '@archipelagoui/cli':
-        specifier: workspace:*
-        version: link:../cli
       '@archipelagoui/core':
         specifier: workspace:*
         version: link:../core
@@ -323,6 +253,9 @@ importers:
       react:
         specifier: ^19.0.0-rc.1
         version: 19.1.0
+      react-dom:
+        specifier: ^19.0.0-rc.1
+        version: 19.1.0(react@19.1.0)
     devDependencies:
       '@types/node':
         specifier: ^22.15.17
@@ -336,9 +269,6 @@ importers:
 
   scaffolding/default:
     dependencies:
-      '@archipelagoui/cli':
-        specifier: workspace:*
-        version: link:../../cli
       '@archipelagoui/core':
         specifier: workspace:*
         version: link:../../core
@@ -436,6 +366,11 @@ packages:
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
+
+  '@archipelagoui/archipelago@0.1.5-archy.2':
+    resolution: {integrity: sha512-CM9cjB6rjUjkuqXEmENkwIbq6EhuPYqBDePQPn4QSnEz9+zJGCx5z4UXyEQzUgQln9Vn5OLEOIMN+jV/2635uw==}
+    engines: {node: '>=20.0.0'}
+    hasBin: true
 
   '@babel/code-frame@7.27.1':
     resolution: {integrity: sha512-cjQ7ZlQ0Mv3b47hABuTevyTuYN4i+loJKGeV9flcCgIK37cCXRh+L1bd3iBHlynerhQ7BhCkn2BPbQUL+rGqFg==}
@@ -2322,6 +2257,11 @@ packages:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
 
+  husky@8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
+    engines: {node: '>=14'}
+    hasBin: true
+
   iconv-lite@0.6.3:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
     engines: {node: '>=0.10.0'}
@@ -4168,6 +4108,40 @@ snapshots:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.8
       '@jridgewell/trace-mapping': 0.3.25
+
+  '@archipelagoui/archipelago@0.1.5-archy.2(jiti@2.4.2)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.19.4))':
+    dependencies:
+      '@algorithm.ts/huffman': 4.0.4
+      '@noble/hashes': 1.8.0
+      '@tailwindcss/vite': 4.1.7(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.19.4))
+      body-parser: 2.2.0
+      bsdiff-node: 2.5.0
+      chokidar: 4.0.3
+      commander: 13.1.0
+      concurrently: 9.1.2
+      express: 5.1.0
+      fs-extra: 11.3.0
+      idb-keyval: 6.2.2
+      madge: 6.1.0(typescript@5.8.3)
+      mlkem: 2.3.1
+      open: 10.1.2
+      pako: 2.1.0
+      postcss: 8.5.3
+      prompts: 2.4.2
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      superfalcon: 2.0.6
+      tailwindcss: 4.1.7
+      tsup: 8.4.0(jiti@2.4.2)(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)
+      tsx: 4.19.4
+    transitivePeerDependencies:
+      - '@microsoft/api-extractor'
+      - '@swc/core'
+      - jiti
+      - supports-color
+      - typescript
+      - vite
+      - yaml
 
   '@babel/code-frame@7.27.1':
     dependencies:
@@ -6231,6 +6205,8 @@ snapshots:
   https-browserify@1.0.0: {}
 
   human-signals@2.1.0: {}
+
+  husky@8.0.3: {}
 
   iconv-lite@0.6.3:
     dependencies:

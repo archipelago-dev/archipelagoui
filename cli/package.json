@@ -1,9 +1,12 @@
 {
-  "name": "@archipelagoui/cli",
-  "private": true,
-  "version": "0.1.5-archy.2",
+  "name": "archy-cli",
+  "private": false,
+  "version": "1.0.2",
   "scripts": {
     "build": "tsup"
+  },
+  "bin": {
+    "archy": "dist/cli.mjs"
   },
   "dependencies": {
     "body-parser": "^2.2.0",
@@ -16,7 +19,7 @@
     "pako": "^2.1.0",
     "superfalcon": "^2.0.6",
     "ws": "^8.16.0",
-    "@archipelagoui/ui": "workspace:*",
+    "@archipelagoui/archipelago": "^0.1.5-archy.2",
     "@noble/hashes": "*"
   },
   "devDependencies": {
