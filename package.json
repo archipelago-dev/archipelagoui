@@ -1,14 +1,11 @@
 {
   "name": "@archipelagoui/archipelago",
-  "version": "0.1.47",
+  "version": "0.1.48",
   "description": "early stage archipelago UI web framework do not use",
   "main": "main.ts",
   "module": "dist/main.mjs",
   "types": "dist/main.d.ts",
   "type": "module",
-  "bin": {
-    "archy": "dist/cli.mjs"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/archipelago-dev/archipelagoui.git"
