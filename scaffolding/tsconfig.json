@@ -1,17 +1,24 @@
 {
   "compilerOptions": {
+    "target": "ESNext",
     "module": "ESNext",
-    "typeRoots": ["../../core-libs/ui/dist", "./node_modules/@types"],
-    "extends": "../tsconfig.json",
-    "types": [],
-    "baseUrl": "./",
-    "paths": {
-      "*": ["types/*"],
-      "@archipelagoui/ui": ["../../core-libs/ui/src"]
-    }
+    "moduleResolution": "Node",
+    "outDir": "dist",
+    "rootDir": ".",
+    "declaration": true,
+    "declarationDir": "dist",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "incremental": false
   },
-  "include": [
-    ".archipelago/**/*",
-    ".archipelago/**/*.d.ts",
-  ]
+  "path": {
+    "@archipelagoui/core/*": ["node_modules/@archipelagoui/archipelago/core/*"],
+    "@archipelagoui/ui/*": ["node_modules/@archipelagoui/archipelago/core-libs/ui/*"]
+  },
+  "include": ["/**/*", "components/**/*", "demo/**/*", "syntax/**/*"],
+  "exclude": ["node_modules", "dist", "components", "demo", "syntax"]
+
 }
