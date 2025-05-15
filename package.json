@@ -1,5 +1,5 @@
 {
-  "name": "archipelagoui",
+  "name": "@archipelagoui/archipelago",
   "version": "0.1.0",
   "description": "early stage archipelago UI web framework do not use",
   "main": "main.ts",
