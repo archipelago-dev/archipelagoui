@@ -1,0 +1,34 @@
+name: Auto Sync & Publish to npm
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  sync-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Sync and increment versions
+        run: node scripts/sync-versions.mjs
+
+      - name: Build project
+        run: pnpm build
+
+      - name: Publish to npm
+        run: pnpm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

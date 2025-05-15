@@ -12,9 +12,10 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hydradevorg/archipelagoui.git",
-  "files": [
-    "dist"
-  ]},
+    "files": [
+      "dist"
+    ]
+  },
   "scripts": {
     "generate:types": "pnpm exec tsx gen/generate-jsx-types.ts ./components",
     "generate:imports": "pnpm exec tsx gen/generate-glob-imports.ts ./components",
