@@ -123,8 +123,7 @@
     }
   ],
   "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
+    "access": "public"
   },
   "typings": "gen/index.d.ts",
   "peerDependenciesMeta": {},
