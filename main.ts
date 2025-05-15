@@ -16,6 +16,7 @@ import { TemplateParser }       from "./core/renderer/template-parser";
 import * as path                     from "path";
 import * as fs                       from "fs";
 import {createDiskSafeVFS} from "./core/vfs/adapter/disk-safe-vfs";
+import {IVirtualFileSystem} from "./core/vfs/types";
 
 
 
@@ -36,7 +37,7 @@ const key  = fs.readFileSync(
 
 
     VfsRegistry.register(
-      createDiskSafeVFS('./data') // scheme: disk-safe://
+      createDiskSafeVFS('./data') as unknown as IVirtualFileSystem // scheme: disk-safe://
 
     );
     /* 2 ── Secure‑fetch JSON over DTLS */

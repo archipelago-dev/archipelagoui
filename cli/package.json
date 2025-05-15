@@ -1,7 +1,7 @@
 {
   "name": "archy-cli",
   "private": false,
-  "version": "0.1.56",
+  "version": "0.1.57",
   "scripts": {
     "build": "tsup"
   },
@@ -9,7 +9,7 @@
     "archy": "./dist/cli.mjs"
   },
   "dependencies": {
-    "@archipelagoui/archipelago": "^0.1.56",
+    "@archipelagoui/archipelago": "^0.1.57",
     "@noble/hashes": "*",
     "body-parser": "^2.2.0",
     "chokidar": "^4.0.3",

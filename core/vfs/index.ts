@@ -1,5 +1,7 @@
 // core/vfs/index.ts
-export const getSafeVFS = async () => {
+import {IVirtualFileSystem} from "./types";
+
+export const getSafeVFS = async ():Promise<IVirtualFileSystem> => {
     if (typeof window === 'undefined') {
         const { createDiskSafeVFS } = await import('./adapter/disk-safe-vfs');
         return createDiskSafeVFS("archipelago");
