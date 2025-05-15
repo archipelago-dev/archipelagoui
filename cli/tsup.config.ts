@@ -9,5 +9,16 @@ export default defineConfig({
   splitting: false,
   dts: true,
   external: ["mlkem", "bsdiff-node", "node:fs", "node:os", "node:path", "node:stream", "node:util", "brotli-wasm"],
+    shims: true,
+  banner: {
+    js: `#!/usr/bin/env node
 
-});
+  } ,
+  onSuccess: () => {
+    console.log("Build complete!");
+  },
+  onError: (error) => {
+    console.error("Build failed:", error);
+  }`
+
+}});

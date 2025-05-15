@@ -1,3 +1,12 @@
+#!/usr/bin/env node
+
+  } ,
+  onSuccess: () => {
+    console.log("Build complete!");
+  },
+  onError: (error) => {
+    console.error("Build failed:", error);
+  }
 var __defProp = Object.defineProperty;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
@@ -14,6 +23,13 @@ var __export = (target, all) => {
     __defProp(target, name, { get: all[name], enumerable: true });
 };
 
+// ../node_modules/.pnpm/tsup@8.4.0_jiti@2.4.2_postcss@8.5.3_tsx@4.19.4_typescript@5.8.3/node_modules/tsup/assets/esm_shims.js
+var init_esm_shims = __esm({
+  "../node_modules/.pnpm/tsup@8.4.0_jiti@2.4.2_postcss@8.5.3_tsx@4.19.4_typescript@5.8.3/node_modules/tsup/assets/esm_shims.js"() {
+    "use strict";
+  }
+});
+
 // web/web-setup-server.ts
 var web_setup_server_exports = {};
 import express from "express";
@@ -24,6 +40,7 @@ var PORT, app, TEMPLATE_DIR;
 var init_web_setup_server = __esm({
   "web/web-setup-server.ts"() {
     "use strict";
+    init_esm_shims();
     PORT = 8822;
     app = express();
     TEMPLATE_DIR = path5.resolve("scaffolding/default");
@@ -124,6 +141,7 @@ var HydrationDevOverlay;
 var init_hydration_dev_overlay = __esm({
   "../core/devtools/hydration-dev-overlay.ts"() {
     "use strict";
+    init_esm_shims();
     HydrationDevOverlay = class {
       static panel = null;
       static logList = null;
@@ -223,9 +241,11 @@ var init_hydration_dev_overlay = __esm({
 });
 
 // cli.ts
+init_esm_shims();
 import { Command } from "commander";
 
 // utils/config.ts
+init_esm_shims();
 import path from "path";
 async function loadConfig() {
   const configPath = path.resolve("archipelago.config.ts");
@@ -238,15 +258,17 @@ async function loadConfig() {
 }
 
 // utils/update.ts
+init_esm_shims();
 import { execSync } from "child_process";
 
 // utils/version.ts
+init_esm_shims();
 import { fileURLToPath } from "url";
 import path2 from "path";
 import fs from "fs";
-var __dirname = path2.dirname(fileURLToPath(import.meta.url));
+var __dirname2 = path2.dirname(fileURLToPath(import.meta.url));
 function getCliVersion() {
-  const pkgPath = path2.resolve(__dirname, "../package.json");
+  const pkgPath = path2.resolve(__dirname2, "../package.json");
   const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
   return pkg.version || "0.0.0";
 }
@@ -297,6 +319,7 @@ async function applyCliUpdate(pkg = "archipelago") {
 }
 
 // utils/history.ts
+init_esm_shims();
 import fs2 from "fs";
 import path3 from "path";
 var HISTORY_PATH = path3.resolve(process.env.HOME || "~", ".archipelago/history.log");
@@ -308,6 +331,7 @@ async function logHistory(cmd) {
 }
 
 // commands/history.ts
+init_esm_shims();
 import fs3 from "fs";
 import path4 from "path";
 var HISTORY_PATH2 = path4.resolve(process.env.HOME || "~", ".archipelago/history.log");
@@ -326,6 +350,7 @@ async function runHistory(limit = 20) {
 }
 
 // commands/create.ts
+init_esm_shims();
 import path6 from "path";
 import fs5 from "fs-extra";
 import prompts from "prompts";
@@ -406,6 +431,7 @@ async function runCommand(cmd, cwd) {
 }
 
 // commands/dev.ts
+init_esm_shims();
 async function runDev() {
   const { spawn: spawn2 } = await import("child_process");
   const dev = spawn2("vite", ["dev"], { stdio: "inherit", shell: true });
@@ -415,6 +441,7 @@ async function runDev() {
 }
 
 // commands/build.ts
+init_esm_shims();
 async function runBuild() {
   const { spawn: spawn2 } = await import("child_process");
   const build = spawn2("vite", ["build"], { stdio: "inherit", shell: true });
@@ -424,6 +451,7 @@ async function runBuild() {
 }
 
 // commands/start.ts
+init_esm_shims();
 async function runStart() {
   const { spawn: spawn2 } = await import("child_process");
   const start = spawn2("vite", ["preview"], { stdio: "inherit", shell: true });
@@ -433,6 +461,7 @@ async function runStart() {
 }
 
 // commands/verify.ts
+init_esm_shims();
 import fs6 from "fs";
 import path7 from "path";
 async function runVerify() {
@@ -447,6 +476,7 @@ async function runVerify() {
 }
 
 // commands/pre-compile.ts
+init_esm_shims();
 async function runPreCompile() {
   console.log("\u{1F9EA} Running JSX pre-compile and stub generation...");
   const { execSync: execSync2 } = await import("child_process");
@@ -458,7 +488,23 @@ async function runPreCompile() {
   }
 }
 
+// commands/hydrate.ts
+init_esm_shims();
+
+// ../core/runtime/main.ts
+init_esm_shims();
+
+// ../core/runtime/ArchipelagoRenderer.ts
+init_esm_shims();
+
+// ../core/runtime/hydrate.ts
+init_esm_shims();
+
+// ../core/runtime/hydration-controller.ts
+init_esm_shims();
+
 // ../core/runtime/render-worker-pool.ts
+init_esm_shims();
 init_hydration_dev_overlay();
 var RenderWorkerPool = class _RenderWorkerPool {
   constructor(poolSize = navigator.hardwareConcurrency || 4) {
@@ -640,6 +686,7 @@ var HydrationController = class _HydrationController {
 };
 
 // ../core/runtime/hydratable-element-manager.ts
+init_esm_shims();
 var HydratableElementManager = class {
   controller = HydrationController.getInstance();
   /**
@@ -716,6 +763,7 @@ async function hydrateDomAutomatically() {
 }
 
 // ../core/runtime/registry.ts
+init_esm_shims();
 var registry = /* @__PURE__ */ new Map();
 function registerComponent(name, resolver, source = "local") {
   registry.set(name, { name, resolver, source });
@@ -738,6 +786,7 @@ function listRegisteredComponents() {
 }
 
 // ../core/runtime/module-manager.ts
+init_esm_shims();
 var registeredModules = [];
 function registerModule(mod) {
   registeredModules.push(mod);
@@ -754,7 +803,11 @@ async function callLifecycle(phase, context) {
   }
 }
 
+// ../core/vfs/container/vfs-container-manager.ts
+init_esm_shims();
+
 // ../core/crypto/hash.ts
+init_esm_shims();
 import { blake3 } from "@noble/hashes/blake3";
 var Blake3 = class _Blake3 {
   hash;
@@ -797,6 +850,7 @@ var Blake3 = class _Blake3 {
 };
 
 // ../core/crypto/falcon.ts
+init_esm_shims();
 var superFalcon;
 if (typeof window === "undefined") {
   const { createRequire } = await import("node:module");
@@ -871,6 +925,12 @@ var FalconSignature = class {
     return await verifyDetached(signature, message, publicKey);
   }
 };
+
+// ../core/vfs/memory-vfs.ts
+init_esm_shims();
+
+// ../core/vfs/types.ts
+init_esm_shims();
 
 // ../core/vfs/memory-vfs.ts
 var MemoryVFS = class {
@@ -1037,6 +1097,7 @@ function createMemoryVFS() {
 }
 
 // ../core/vfs/safe-storage.ts
+init_esm_shims();
 var SafeStorage = class {
   constructor(fs10, root = "/store") {
     this.fs = fs10;
@@ -1078,7 +1139,11 @@ var SafeStorage = class {
   }
 };
 
+// ../core/vfs/stream/stream-adapter.ts
+init_esm_shims();
+
 // ../core/vfs/container/verify-vault.ts
+init_esm_shims();
 import { ungzip } from "pako";
 async function verifyVaultSignature(vfs, filePath) {
   const sigPath = `${filePath}.sig.gz`;
@@ -1108,13 +1173,16 @@ async function verifyVaultSignature(vfs, filePath) {
 }
 
 // ../core/net/secure-sockets.ts
+init_esm_shims();
 import { EventEmitter as EventEmitter2 } from "node:events";
 
 // ../hydra_compression/src/uDTLS-PQ/src/udtls-pq.ts
+init_esm_shims();
 import { EventEmitter } from "node:events";
 import dgram from "node:dgram";
 
 // ../hydra_compression/src/uDTLS-PQ/src/lib/types.ts
+init_esm_shims();
 var DTLSSession = class {
   constructor(id) {
     this.id = id;
@@ -1402,7 +1470,11 @@ function createStreamAdapter(source, verify = true, vault) {
   return new StreamAdapter(source, verify, vault);
 }
 
+// ../core/transports/secure-memory-transport.ts
+init_esm_shims();
+
 // ../core/crypto/aes.ts
+init_esm_shims();
 async function generateAesKey() {
   return crypto.subtle.generateKey(
     {
@@ -1451,7 +1523,14 @@ var AESGCM = class {
   }
 };
 
+// ../core/crypto/factory.ts
+init_esm_shims();
+
+// ../core/interfaces/transport.ts
+init_esm_shims();
+
 // ../core/crypto/kyber.ts
+init_esm_shims();
 import { MlKem768 } from "mlkem";
 var KyberKeyExchange = class {
   publicKey;
@@ -1641,12 +1720,29 @@ var SecureMemoryTransport = class {
   }
 };
 
+// ../core/vfs/adapter/ost.ts
+init_esm_shims();
+
+// ../core/transports/ost/OSTPackWriter.ts
+init_esm_shims();
+
 // ../core/transports/ost/OSTCompression.ts
-import { brotliCompress as _brotliCompress, brotliDecompress as _brotliDecompress } from "zlib";
-import { promisify } from "util";
-import { zstdCompress, zstdDecompress } from "node:zlib";
-var brotliCompress = promisify(_brotliCompress);
-var brotliDecompress = promisify(_brotliDecompress);
+init_esm_shims();
+var compress;
+var decompress;
+if (typeof window === "undefined") {
+  const { brotliCompress: brotliCompress2, brotliDecompress: brotliDecompress2 } = await import("zlib");
+  const { promisify } = await import("util");
+  compress = promisify(brotliCompress2);
+  decompress = promisify(brotliDecompress2);
+} else {
+  compress = async () => {
+    throw new Error("OSTCompression.compress() is not supported in the browser");
+  };
+  decompress = async () => {
+    throw new Error("OSTCompression.decompress() is not supported in the browser");
+  };
+}
 var DEFAULT_CONFIG = {
   windowLength: 1e3,
   labelLength: 4,
@@ -2004,6 +2100,7 @@ var OSTPackWriter = class {
 };
 
 // ../core/transports/ost/OSTPackReader.ts
+init_esm_shims();
 var OSTPackReader = class {
   static async extractPack(pack) {
     const magic = new TextDecoder().decode(pack.slice(0, 4));
@@ -2109,13 +2206,20 @@ var OstVfsAdapter = class {
 var createOstVFS = (base, cfg = {}) => new OstVfsAdapter(base, cfg);
 
 // ../core/vfs/adapter/disk-safe-vfs.ts
+init_esm_shims();
 import { promises as fs7 } from "node:fs";
 import * as path8 from "node:path";
 import { randomBytes } from "node:crypto";
 import EventEmitter3 from "node:events";
 import chokidar from "chokidar";
 import bsdiff from "bsdiff-node";
-var ROOT_DEFAULT = path8.join(process.cwd(), "data", "vfs");
+function safeCwd() {
+  if (typeof process !== "undefined" && typeof process.cwd === "function") {
+    return process.cwd();
+  }
+  return "/";
+}
+var ROOT_DEFAULT = path8.join(safeCwd(), "data", "vfs");
 var VERS_DIR = ".vfs_versions";
 var META_EXT = ".json";
 var DELTA_EXT = ".bsdiff";
@@ -2537,10 +2641,15 @@ async function runHydrate(opts) {
 }
 
 // commands/render.ts
+init_esm_shims();
 import * as fs9 from "fs";
 import * as path11 from "path";
 
+// ../core/cli/template-renderer.ts
+init_esm_shims();
+
 // ../core/renderer/template-parser.ts
+init_esm_shims();
 var TemplateParser = class {
   constructor() {
   }
@@ -2622,6 +2731,7 @@ var TemplateParser = class {
 };
 
 // ../core/renderer/html-transformer.ts
+init_esm_shims();
 var HtmlTransformer = class _HtmlTransformer {
   constructor(context, options = {}) {
     this.context = context;
@@ -2830,6 +2940,7 @@ async function runRender(input, outputDir, watch = false) {
 }
 
 // commands/serve.ts
+init_esm_shims();
 import { spawn } from "child_process";
 import * as path12 from "path";
 async function runServe() {
