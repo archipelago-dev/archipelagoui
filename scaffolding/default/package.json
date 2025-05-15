@@ -1,6 +1,6 @@
 {
   "name": "archipelago-app",
-  "version": "0.1.5-archy.2",
+  "version": "0.1.6",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-
     "@archipelagoui/core": "workspace:*",
     "@archipelagoui/ui": "workspace:*",
     "@tailwindcss/vite": "^4.1.6",

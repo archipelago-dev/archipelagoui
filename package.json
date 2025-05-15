@@ -1,6 +1,6 @@
 {
   "name": "@archipelagoui/archipelago",
-  "version": "0.1.5-archy.2",
+  "version": "0.1.6",
   "description": "early stage archipelago UI web framework do not use",
   "main": "main.ts",
   "module": "dist/main.mjs",
@@ -9,16 +9,19 @@
   "bin": {
     "archy": "dist/cli.mjs"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hydradevorg/archipelagoui.git",
   "files": [
     "dist"
-  ],
+  ]},
   "scripts": {
     "generate:types": "pnpm exec tsx gen/generate-jsx-types.ts ./components",
     "generate:imports": "pnpm exec tsx gen/generate-glob-imports.ts ./components",
     "watch:types": "pnpm exec tsx gen/generate-jsx-types.ts ./components --watch",
     "watch:imports": "pnpm exec tsx gen/generate-glob-imports.ts ./components --watch",
     "watch:all": "pnpm exec concurrently \"pnpm run watch:types\" \"pnpm run watch:imports\"",
-    "build:cli": "pnpm --filter @archipelagoui/cli build --dts && chmod +x dist/cli.mjs",
+    "build": "pnpm exec tsup",
     "test": "jest",
     "test:ost": "tsx scripts/ost-test.ts",
     "run:example:transport-memory": "tsx examples/secure-memory-demo.ts",

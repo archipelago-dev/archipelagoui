@@ -1,6 +1,6 @@
 {
   "name": "archipelago-app",
-  "version": "0.1.5-archy.2",
+  "version": "0.1.6",
   "private": true,
   "type": "module",
   "scripts": {
@@ -12,7 +12,7 @@
     "@archipelagoui/core": "workspace:*",
     "react": "^19.0.0-rc.1",
     "@archipelagoui/ui": "workspace:*",
-   "react-dom": "^19.0.0-rc.1",
+    "react-dom": "^19.0.0-rc.1",
     "@tailwindcss/vite": "^4.1.6"
   },
   "devDependencies": {

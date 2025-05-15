@@ -1,5 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-node scripts/sync-versions.mjs
+node scripts/update-version.js
 pnpm run build

@@ -1,7 +1,7 @@
 {
   "name": "archy-cli",
   "private": false,
-  "version": "1.0.2",
+  "version": "0.1.6",
   "scripts": {
     "build": "tsup"
   },
